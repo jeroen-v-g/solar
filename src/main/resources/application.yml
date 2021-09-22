@@ -1,0 +1,15 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          localhost:
+            clientId: angular-app
+            clientSecret: 337f0841-1356-4827-8eab-5b5d202ae779
+            scope: profile,email,openid
+        provider:
+          localhost:
+            issuer-uri: http://localhost:8080/auth/realms/oauth2-angular
+server:
+  port : 8090
+

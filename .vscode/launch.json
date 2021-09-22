@@ -1,0 +1,31 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch SolarApplication",
+            "request": "launch",
+            "mainClass": "nl.jemo85.oauth.SolarApplication",
+            "projectName": "solar"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-OauthApplication<oauth>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "nl.jemo85.oauth.OauthApplication",
+            "projectName": "solar",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SolarApplication<solar>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "nl.jemo85.oauth.SolarApplication",
+            "projectName": "solar",
+            "args": ""
+        }
+    ]
+}

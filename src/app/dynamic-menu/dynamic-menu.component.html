@@ -1,0 +1,28 @@
+<button mat-button [matMenuTriggerFor]="itemMenu">
+  {{ startMenuItem.description }}
+</button>
+<mat-menu #itemMenu="matMenu" #parentMenuRef>
+    <ng-container *ngTemplateOutlet="recursiveMenuTmpl; context: { $implicit: startMenuItem, parentMenuRef: parentMenuRef }"></ng-container>
+</mat-menu>
+<ng-template #recursiveMenuTmpl let-rootItem let-parentMenuRef="parentMenuRef">
+  <ng-container appMenupatch [parentMenu]=parentMenuRef>
+    <ng-container *ngFor="let childItem of rootItem.children" >
+      <ng-container *ngIf="hasSubItems(childItem)">
+        <button #triggerButton="matMenuItem" #trigger="matMenuTrigger" [matMenuTriggerFor]="patch(itemMenu, triggerButton, trigger, parentMenuRef)" mat-menu-item>
+          {{ childItem.description }}
+        </button>
+        <mat-menu #itemMenu="matMenu" #parentMenuRefNew>
+          <ng-container *ngTemplateOutlet="recursiveMenuTmpl; context: { $implicit: childItem, parentMenuRef: parentMenuRefNew }"></ng-container>
+        </mat-menu>
+      </ng-container>
+      <ng-container *ngIf="!hasSubItems(childItem)">
+        <button *ngIf="childItem.route" mat-menu-item [routerLink]="childItem.uri">
+          {{ childItem.description }}
+        </button>
+        <button *ngIf="!childItem.route" mat-menu-item (click)="onOpenUrl(childItem.uri)">
+          {{ childItem.description }}
+        </button>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</ng-template>

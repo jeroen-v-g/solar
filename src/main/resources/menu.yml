@@ -1,0 +1,20 @@
+description: menu
+children:
+  - description: Welcome
+    uri:  /
+    route:  true
+  - description: Sample Sub menu
+    role:
+    children:
+    - description: Google search engine
+      uri: http://www.google.com
+      route: false
+  - description: Sign on/off
+    children:
+      - description: Login
+        uri: /login
+        route: false
+      - description: Logout
+        uri: /logout
+        route: false
+

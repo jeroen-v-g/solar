@@ -1,9 +1,15 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+# gradle work-dir
+.gradle
+
 # compiled output
+/bin
+/build
 /dist
 /tmp
 /out-tsc
+/src/main/resources/static
 # Only exists if Bazel was run
 /bazel-out
 

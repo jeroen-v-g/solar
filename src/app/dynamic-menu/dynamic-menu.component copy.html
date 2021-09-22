@@ -1,0 +1,62 @@
+<button mat-button [matMenuTriggerFor]="itemMenu" [ngClass]="'mat-menu-item-submenu-trigger'">{{startMenuItem.description}}</button>
+<mat-menu #itemMenu="matMenu">
+  <ng-container *ngFor="let childItem of startMenuItem.children">
+     <ng-container
+      *ngTemplateOutlet="recursiveMenuTmpl; context: { $implicit: childItem}">
+    </ng-container>
+  </ng-container>
+</mat-menu>
+
+<ng-template #recursiveMenuTmpl let-parentItem>
+  <ng-container *ngIf="parentItem.children">
+    <ng-container *ngTemplateOutlet="menuItem; context: { $implicit: parentItem}"></ng-container>
+  </ng-container>
+  <ng-container *ngIf="!parentItem.children">
+    <ng-container *ngTemplateOutlet="singleItem; context: { $implicit: parentItem}"></ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #menuItem let-rootItem>
+  <button mat-button [matMenuTriggerFor]="itemMenu" [ngClass]="'mat-menu-item mat-menu-item-submenu-trigger'" aria-haspopup="true" role="menuitem">{{rootItem.description}}</button>
+  <mat-menu #itemMenu="matMenu">
+    <ng-container *ngFor="let childItem of rootItem.children">
+       <ng-container
+        *ngTemplateOutlet="recursiveMenuTmpl; context: { $implicit: childItem}">
+      </ng-container>
+    </ng-container>
+  </mat-menu>
+  </ng-template>
+
+  <ng-template #menuItem2 let-rootItem>
+    <button mat-button [matMenuTriggerFor]="itemMenu">{{rootItem.description}}</button>
+    <mat-menu #itemMenu="matMenu">
+      <ng-container *ngFor="let childItem of rootItem.children">
+        <button mat-button [matMenuTriggerFor]="testMenu">Test</button>
+        <mat-menu #testMenu="matMenu"><a mat-menu-item>Test</a></mat-menu>
+      </ng-container>
+    </mat-menu>
+    </ng-template>
+
+<ng-template #singleItem let-item>
+  <button *ngIf="item.route" mat-button [routerLink]="item.uri" [ngClass]="'mat-menu-item'" >{{item.description}}</button>
+  <button *ngIf="!item.route" mat-button (click)="onOpenUrl(item.uri)" [ngClass]="'mat-menu-item'">{{item.description}}</button>
+</ng-template>
+
+
+<button mat-button [matMenuTriggerFor]="menu">Example</button>
+    <mat-menu #menu="matMenu">
+    <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+    <button mat-menu-item>Invertebrates</button>
+    <button mat-menu-item><a href="login">Login</a></button>
+    <button mat-menu-item><a href="logout">Log out</a></button>
+    </mat-menu>
+    <mat-menu #vertebrates="matMenu">
+    <button mat-menu-item >Fishes</button>
+    <button mat-menu-item >Amphibians</button>
+    <button mat-menu-item >Reptiles</button>
+    <button mat-menu-item>Birds</button>
+    <button mat-menu-item>Mammals</button>
+    </mat-menu>
+
+
+
