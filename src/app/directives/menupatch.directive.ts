@@ -1,18 +1,13 @@
 import { Directive, Input, ContentChildren, QueryList } from '@angular/core';
-import { MatMenu, MatMenuItem } from '@angular/material/menu';
-
+import { MatMenuItem } from '@angular/material/menu';
 
 @Directive({
   selector: '[appMenupatch]'
 })
 export class MenupatchDirective {
-
   @ContentChildren(MatMenuItem, {descendants: true}) _allItems: QueryList<MatMenuItem>;
-
   @Input() parentMenu: any;
-
   constructor() {
-
   }
 
   ngAfterViewChecked(){

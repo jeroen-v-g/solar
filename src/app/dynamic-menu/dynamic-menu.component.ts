@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, QueryList } from '@angular/core';
-import { MatMenu, MatMenuItem, MatMenuPanel, MatMenuTrigger, _MatMenuBase } from '@angular/material/menu';
-import { MenuService, MenuItem } from '../services/menu.service';
+import { Component, OnInit } from '@angular/core';
+import { MatMenu, MatMenuItem, MatMenuPanel, _MatMenuBase } from '@angular/material/menu';
+import { MenuItem, MenuService } from '../services/menu.service';
 
 @Component({
   selector: 'app-dynamic-menu',
